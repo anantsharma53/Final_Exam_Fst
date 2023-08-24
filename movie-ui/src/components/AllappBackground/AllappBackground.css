@@ -1,0 +1,7 @@
+
+body {
+    background-image: url('https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg');
+    background-size: cover; /* This makes the image cover the entire screen */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* This ensures the background doesn't scroll with the content */
+}

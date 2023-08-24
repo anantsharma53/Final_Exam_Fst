@@ -1,8 +1,15 @@
-.userLogin{
+.userprofile{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 
+}
+.usertickets{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 1%;
+    
 }
 .tablecolour {
     background-color: aliceblue;

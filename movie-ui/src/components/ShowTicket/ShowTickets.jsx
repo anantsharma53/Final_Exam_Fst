@@ -3,101 +3,37 @@ import Navbar from '../Navbar/Navbar';
 import './ShowTicket.css'
 import Profile from "../Profile/Profile";
 import { useNavigate } from "react-router-dom";
+import Loader from "../Loader/Loader";
 function ShowTicket() {
+    const navigate = useNavigate()
     const token = localStorage.getItem('token')
-    const[data,setData]=useState([])
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-    const[theaterDetails,setTheaterDetails]=useState([])
+
     useEffect(() => {
-        
-        // Define the URL of the API
-        const apiUrl = 'http://127.0.0.1:8000/api/movies/tickets/';
-    
-        // Fetch data from the API using a GET request
-        fetch(apiUrl,{
+        fetch('http://127.0.0.1:8000/api/movies/seatbooking/', {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
 
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            // Update the state with the fetched data
-            setData(data);
-            setLoading(false); // Set loading to false once data is fetched
-          })
-          .catch((error) => {
-                
-            console.error('Error fetching data:', error);
-            setLoading(false); // Set loading to false in case of an error
-          });
-      }, [token]);
-    console.log(data);
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Update the state with the fetched data
+                setData(data);
+                // setMovie(data.movie)
+                setLoading(false); // Set loading to false once data is fetched
+            })
+            .catch((error) => {
+                navigate('/signin')
+                console.error('Error fetching data:', error);
+                setLoading(false); // Set loading to false in case of an error
+            });
 
-     function getTheater(movie){
-
-      fetch(`http://127.0.0.1:8000/api/movie/the/${movie}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setTheaterDetails(data)
-          })
-      }
-console.log(theaterDetails)
-
-    
-    
-   
-
-    
-
-    function SeatDetails({ seatDetails }) {
-        return (
-                        <table class="container table user-list tablecolour">
-                            <thead>
-                                <tr>
-                                    <th class="text-center"><span>Sl No:</span></th>
-                                    <th class="text-center"><span>Seat Number</span></th>
-                                    <th class="text-center"><span>Category</span></th>
-                                    <th class="text-center"><span>Price</span></th>
-                                    <th class="text-center"><span>Date</span></th>
-                                    <th class="text-center"><span>Movie Timing</span></th> 
-                                    <th class="text-center"><span>Action</span></th>                                   
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {seatDetails
-                                    &&
-                                    seatDetails.map((seat, index) => (
-                                      
-                                        <tr key={index}>
-                                            <td>{index + 1}</td>
-                                            <td>{seat.seat_number} <br /></td>
-                                            <td>{seat.category}<br /></td>
-                                            <td>{seat.price}</td>
-                                            <td>{seat.date}</td>
-                                            <td>{seat.movie_timing}</td>
-                                            <td style={{ width: '20%' }}>
-                                                <a href="#" class="table-link" onClick={() => getTheater(seat.movie)}>
-                                                    <span class="fa-stack">
-                                                        <img  src="https://www.freeiconspng.com/thumbs/laser-icon/hardware-laser-printer-icon-32.png" 
-                                                        style={{width:'50px',height:'50px'}}/>
-                                                    </span>
-                                                </a>
-                                                
-                                                
-                                            </td>                                          
-                                        </tr>
-                                    ))}       
-                            </tbody>
-                        </table>
-        );
-    }
-
-
-
-
+    }, [token]);
+ 
     return (
         <>
             <Navbar />
@@ -107,34 +43,56 @@ console.log(theaterDetails)
                 backgroundSize: 'cover',  // Adjust the background size as needed
                 backgroundPosition: 'center'  // Adjust the background position as needed
             }}>
-                {loading? 
-        <div>Loading...</div>:
-        <div className="userLogin">
-            <Profile />
-            {/* <Profile userDetails={data.user_details} /> */}
-            <SeatDetails seatDetails={data.seat_details} theaterDetails={data.theater_details} />
-            {/* <TheaterDetails theaterDetails={data.theater_details} /> */}
-        </div>
+                <div className="userprofile">
+                    <Profile />
+                </div>
 
-      }
-                
+                {loading ?
+                    <Loader /> :
+                    <div className="usertickets">
 
+                        <div>
+                            <table className=" table user-list tablecolour">
+                                <thead>
+                                    <tr>
+                                        <th className="text-center">Tickets Reference No</th>
+                                        <th className="text-center">Movie Details</th>
+                                        <th className="text-center">Seat Details</th>
+                                        <th className="text-center">Total Bill</th>
+                                        <th className="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    {data.map((booking) => (
+                                        <tr key={booking.id}>
+                                            <td className="text-center">{booking.id}</td>
+                                            <td className="text-center">
+                                                <span>
+                                                    Movie Title: {booking.movie.title}<br />
+                                                    Director: {booking.movie.director}
+                                                </span>
+                                            </td>
+                                            <td className="text-center">
+                                                {booking.seats.map((seat, index) => (
+                                                    <span key={index}>{seat.seat_number}<br /></span>
+                                                ))}
+                                            </td>
+                                            <td className="text-center">Rs{booking.total_cost}/-</td>
+                                            <td className="text-center">
+                                                <button className="btn btn-primary">View Details</button>
+                                                <button className="btn btn-primary">Print Tickets</button>
+                                                <button className="btn btn-primary">Cancel Booking</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     );
 }
 export default ShowTicket;
-
-
-
-// function DisplayDetails({ data }) {
-//   return (
-//     <div>
-//       <UserDetails userDetails={data.user_details} />
-//       <SeatDetails seatDetails={data.seat_details} />
-//       <TheaterDetails theaterDetails={data.theater_details} />
-//     </div>
-//   );
-// }
-
-// export default DisplayDetails;
