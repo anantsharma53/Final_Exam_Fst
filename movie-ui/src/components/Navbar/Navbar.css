@@ -1,0 +1,23 @@
+
+.navbar-bg{
+    /* background-color: #0a1e5e !important; */
+    background: linear-gradient(to right, #ee7724, #d8363a, #d8363a, #ee7724);
+    height: 80px;
+   
+}
+
+.nav-link{
+    color: white !important;
+    font-size: x-large;
+}
+
+.btn-primary{
+    background-image: -webkit-linear-gradient(169deg, #5560ff 17%, #aa52a1 63%, #ff4343 100%);
+    width: 140px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    border-radius: 18px;
+}

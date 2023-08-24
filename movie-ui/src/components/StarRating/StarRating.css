@@ -1,0 +1,32 @@
+/* Styles for the star rating component */
+
+.star-rating {
+  display: inline-flex;
+  font-size: 20px;
+  color: #f0c42f; /* Star color */
+  overflow: hidden;
+  direction: rtl; /* Set the direction to right-to-left */
+}
+
+.star-rating-inner {
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width 0.5s; /* Smooth animation for changing widths */
+}
+
+/* Adjust the color for the unfilled stars */
+.star-rating-inner::before {
+  content: '★★★★★';
+  color: #ccc; /* Unfilled star color */
+}
+
+/* Adjust the color for the filled stars */
+.star-rating-inner::after {
+  content: '★★★★★';
+  color: #f0c42f; /* Filled star color */
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}

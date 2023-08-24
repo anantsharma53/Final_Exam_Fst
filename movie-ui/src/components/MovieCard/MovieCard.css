@@ -1,0 +1,112 @@
+.card{
+    margin: 18px 12px;
+}
+
+.ratings{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(15, 15, 15);
+}
+/* [
+  {
+    
+    "title": "Action Adventure",
+    "director": "Samuel Director",
+    "genre": "Adventure",
+    "language": "English",
+    "rating": "4.8",
+    "movie_length": 142,
+    "image": "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/action-movie-poster-template-design-0f5fff6262fdefb855e3a9a3f0fdd361_screen.jpg?ts=1636996054"
+  },
+  {
+   
+    "title": "Comedy Chaos",
+    "director": "Cynthia Filmmaker",
+    "genre": "Comedy",
+    "language": "Spanish",
+    "rating": "3.9",
+    "movie_length": 110,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5xql_MuZ1PFZS3PcZTEKeBB0AzRsx6lKGw9diMKcX7HAAvgLj2UpJ0pHu0eaqSbNPQBQ&usqp=CAU"
+  },
+  {
+    
+    "title": "Drama Delight",
+    "director": "David Directorson",
+    "genre": "Drama",
+    "language": "French",
+    "rating": "4.1",
+    "movie_length": 126,
+    "image": "https://i.guim.co.uk/img/media/7f9f5866aa535d95cd69e8f931f6f21b25c5227e/0_0_2025_3000/master/2025.jpg?width=300&quality=45&auto=format&fit=max&dpr=2&s=5a3cc00304068a9a45d7cf014e1db54d"
+  },
+  {
+    
+    "title": "Sci-Fi Spectacle",
+    "director": "Samantha SciFi",
+    "genre": "Science Fiction",
+    "language": "English",
+    "rating": "4.6",
+    "movie_length": 155,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJIOk9yLlYmnNS5hFEwPRNOm1zqeXEAFEF95_9PzM8TtAbEGNR3K8u8Osu5wbNXLTwq2U&usqp=CAU"
+  },
+  {
+    
+    "title": "Romantic Moments",
+    "director": "Robert Love",
+    "genre": "Romance",
+    "language": "Italian",
+    "rating": "4.3",
+    "movie_length": 128,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQInR8iowtMBA9hnmfdKx7bxmGN05XK2q6r7g1Vq0gOvb6oKq2xbZHhZmiJV9UYh_CrUuY&usqp=CAU"
+  },
+  {
+    
+    "title": "Thriller Tension",
+    "director": "Tina Suspense",
+    "genre": "Thriller",
+    "language": "English",
+    "rating": "4.9",
+    "movie_length": 140,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVNbUaHG1MiKVBOXyitimfl4V66U34kwUuT9OxYIcbE1TeEMTwBeBcxxHW_AgiWGTZ0k&usqp=CAU"
+  },
+  {
+    
+    "title": "Fantasy Fantasy",
+    "director": "Felix Fantasia",
+    "genre": "Fantasy",
+    "language": "English",
+    "rating": "4.4",
+    "movie_length": 133,
+    "image": "https://m.media-amazon.com/images/I/512-nyFxXUL._AC_UF894,1000_QL80_.jpg"
+  },
+  {
+    
+    "title": "Horror Horizons",
+    "director": "Helen Fear",
+    "genre": "Horror",
+    "language": "English",
+    "rating": "3.7",
+    "movie_length": 112,
+    "image": "https://i.ebayimg.com/images/g/nWUAAOSwWZFggeeJ/s-l1200.webp"
+  },
+  {
+    
+    "title": "Mystery Mysteries",
+    "director": "Max Enigma",
+    "genre": "Mystery",
+    "language": "English",
+    "rating": "4.0",
+    "movie_length": 125,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Z0TeQK8Gqigfndz0-Y8gSy-5TnuETYbJIH3UZTL6dnWB6alFGZifM_05YtSYNY638kM&usqp=CAU"
+  },
+  {
+    
+    "title": "Historical Epics",
+    "director": "Henry History",
+    "genre": "Historical",
+    "language": "English",
+    "rating": "4.7",
+    "movie_length": 150,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqjmTzKVQ5vFY4qhpTs4Ctts_8Vrnkq2uNHBshSwDfAwR6TqQ9PMmZuHvZDSdy4RTrB68&usqp=CAU"
+  }
+] */

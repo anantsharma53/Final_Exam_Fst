@@ -1,0 +1,75 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.detailContainer {
+    display: flex;
+    justify-content: center;
+     /* Ensure the whole viewport is covered */
+    margin: 0;
+    
+  }
+.btnBookTickets {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .detailsbox{
+    max-width: 1200px;
+    width: 100%;
+    margin: 100px auto;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 5px #ccc;
+    
+  }
+  .details{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px 0;
+  }
+  .big-img img{
+    width: 600px;
+    height: 600px;
+    /* max-height: 400px; */
+    /* display: block; */
+    /* object-fit: cover; */
+  }
+  
+  .details .box{
+    max-width: 500px;
+    min-width: 290px;
+    margin: 25px;
+  }
+  .box .row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .box .row h2{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .box .row span{
+    color: crimson;
+  }
+  .box .colors button{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #333;
+    outline: none;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .box p{
+    line-height: 1.5;
+    margin: 15px 0;
+  }
+

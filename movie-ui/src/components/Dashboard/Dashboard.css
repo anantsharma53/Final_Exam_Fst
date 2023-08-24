@@ -1,0 +1,200 @@
+.dashboardContainer{
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    background-image: url("https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center; 
+}
+.buttonContainer{
+	/* width: 100vh; */
+	padding: 5px;
+	justify-content: space-between;
+	display: flex;
+	background-image: url("https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg");
+    /* background-repeat: no-repeat; */
+}
+
+.userDetail{
+	justify-content: left; 
+	width: 30%;
+	margin-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    /* background-color: rgba(68, 90, 153, 0.051); */
+    padding: 60px 45px;
+    box-shadow: 0px 0px 29.4px 0.6px rgb(0 0 0 / 50%);
+}
+.welcomeUserText{
+
+	font-size: 15px;
+    font-weight: 500;
+    color: rgb(247, 248, 243);
+	
+
+}
+.openModalBtn {
+	width: 200px;
+	height: 40px;
+	border: none;
+	border-radius: 6px;
+	background-color: cornflowerblue;
+	color: white;
+	cursor: pointer;
+  }
+  body {
+	padding: 0;
+	margin: 0;
+  }
+
+.row {
+    width: 100%;
+    margin: 10px;
+    display: flex;
+
+     /* Fill the available width */
+}
+
+.left-section {
+    
+    flex: 1; /* Take up half of the available width */
+    padding: 200px; /* Add some padding for spacing */
+}
+
+.right-section {
+    margin-top: 5px;
+    flex: 1; /* Take up half of the available width */
+    padding: 20px; /* Add some padding for spacing */
+    padding-left: 80px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 5%;
+    margin-left: 0%;
+	background-color: none;
+    border: none !important;
+    
+}
+.table thead{
+    background-color: #dd3675;
+    color: #eee;
+    border-color: none;
+    
+}
+
+/* USER LIST TABLE */
+.user-list {
+    width: 80%; /* Adjust the width as needed */
+}
+.user-list tbody td > img {
+    position: relative;
+	max-width: 25px;
+	float: left;
+	margin-right: 15px;
+}
+.user-list tbody td .user-link {
+	display: block;
+	font-size: 1.25em;
+	padding-top: 3px;
+	margin-left: 60px;
+}
+.user-list tbody td .user-subhead {
+	font-size: 0.875em;
+	font-style: italic;
+}
+
+/* TABLES */
+.table {
+    border-collapse: none;
+}
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+	background-color: #eee;
+}
+.table thead > tr > th {
+	border-bottom: none;
+	padding-bottom: 0;
+}
+/* .table tbody > tr > td {
+	font-size: 0.875em;
+	background: #f5f5f5;
+	border-top: 10px solid #fff;
+	vertical-align: middle;
+	padding: 12px 8px;
+} */
+.table tbody > tr > td:first-child,
+.table thead > tr > th:first-child {
+	padding-left: 20px;
+}
+.table thead > tr > th span {
+	border-bottom: none;
+	display: inline-block;
+	padding: 0 5px;
+	padding-bottom: 5px;
+	font-weight: normal;
+}
+/* .table thead > tr > th > a span {
+	color: #344644;
+} */
+/* .table thead > tr > th > a span:after {
+	content: "\f0dc";
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: inherit;
+	margin-left: 5px;
+	font-size: 0.75em;
+} */
+/* .table thead > tr > th > a.asc span:after {
+	content: "\f0dd";
+}
+.table thead > tr > th > a.desc span:after {
+	content: "\f0de";
+} */
+.table thead > tr > th > a:hover span {
+	text-decoration: none;
+	color: #2bb6a3;
+	border-color: #2bb6a3;
+}
+.table.table-hover tbody > tr > td {
+	-webkit-transition: background-color 0.15s ease-in-out 0s;
+	transition: background-color 0.15s ease-in-out 0s;
+}
+
+.table tbody tr td .first-line span {
+	font-size: 0.875em;
+	color: #969696;
+	font-weight: 300;
+}
+.table tbody tr td .second-line {
+	font-size: 0.875em;
+	line-height: 1.2;
+}
+.table a.table-link {
+	margin: 0 5px;
+	font-size: 1.125em;
+}
+.table a.table-link:hover {
+	text-decoration: none;
+	color: #2aa493;
+}
+.table a.table-link.danger {
+	color: #fe635f;
+}
+.table a.table-link.danger:hover {
+	color: #dd504c;
+}
+
+.table-products tbody > tr:hover > td {
+	text-decoration: none;
+	background-color: #f6f6f6;
+}
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-right: 25%;
+    margin-top: 0px; 
+   
+}
