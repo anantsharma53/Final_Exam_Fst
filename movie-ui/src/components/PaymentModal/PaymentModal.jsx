@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import './PaymentModal.css'
 import { useNavigate } from "react-router-dom";
 import Loader from './../Loader/Loader';
-function PaymentModal({ isOpen, onClose, onPaymentDone,selectedSeats, movie }) {
-    const token=localStorage.getItem('token')
+function PaymentModal({ isOpen, onClose, onPaymentDone, selectedSeats, movie }) {
+    const token = localStorage.getItem('token')
     const [paymentKey, setPaymentKey] = useState('');
-    const[bookingDetails,setBookingDetails]=useState()
-    const[loaderpage,setLoader]=useState(false)
-    const[cvv,setCvv]=useState();
+    const [bookingDetails, setBookingDetails] = useState()
+    const [loaderpage, setLoader] = useState(false)
+    const [seat, setSeat] = useState({});
+    const [cvv, setCvv] = useState();
     const navigate = useNavigate()
     const handlePaymentDone = () => {
 
@@ -20,54 +21,94 @@ function PaymentModal({ isOpen, onClose, onPaymentDone,selectedSeats, movie }) {
         // Notify the calling component that payment is done
         onPaymentDone(generatedKey);
     };
-    function handleBookSeats  () {
-        setLoader(true)
+    // function handleBookSeats() {
+    //     setLoader(true)
+
+    //     fetch(`http://127.0.0.1:8000/api/movies/seatbooking/`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': `Bearer ${token}`,
+    //         },
+    //         body: JSON.stringify({
+    //             seats: selectedSeats.map((seat) => seat.id),
+    //             movie: movie,
+    //         }),
+    //     })
+    //         .then((response) => {
+    //             if (response.ok) {
+    //                 return response.json();
+    //             } else {
+    //                 throw new Error('Server error:', response.status);
+    //             }
+    //         })
+    //         .then((data) => {
+    //             setBookingDetails(data);
+    //             console.log(data);
+
+    //             handlePaymentDone()
+    //             navigate('/dashboard')
+    //             // Redirect to the dashboard or another page after successful booking.
+    //         })
+    //         .catch((error) => {
+    //             // Handle any other errors that might occur.
+    //             console.error('Error booking seats:', error);
+    //         })
+    //         .finally(() => {
+    //             setLoader(false); // This ensures that loader is turned off regardless of success or error
+    //         });
+    // };
+    function handleBookSeats() {
+        setLoader(true);
+    
         fetch(`http://127.0.0.1:8000/api/movies/seatbooking/`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            seats: selectedSeats.map((seat) => seat.id),
-            movie: movie,
-          }),
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                seats: selectedSeats.map((seat) => seat.id),
+                movie: movie,
+            }),
         })
-          .then((response) => {
+        .then((response) => {
             if (response.ok) {
                 return response.json();
             } else {
-              throw new Error('Server error:', response.status);
+                throw new Error(`Server error: ${response.status}`);
             }
-          })
-          .then((data) => {
-            setBookingDetails(data);
-            console.log(data);
+        })
+        .then((data) => {
+            console.log(data); // Check the response structure
+    
+            // Assuming booking details are in data.bookingDetails
+            setBookingDetails(data.bookingDetails);
             
-            handlePaymentDone()
-            navigate('/dashboard')
+            handlePaymentDone();
+            navigate('/dashboard');
             // Redirect to the dashboard or another page after successful booking.
-          })
-          .catch((error) => {
+        })
+        .catch((error) => {
             // Handle any other errors that might occur.
             console.error('Error booking seats:', error);
-          })
-          .finally(() => {
-            setLoader(false); // This ensures that loader is turned off regardless of success or error
+        })
+        .finally(() => {
+            setLoader(false); // This ensures that the loader is turned off regardless of success or error
         });
-      };
+    }
     
     return (
         <>
-        {loaderpage ? <Loader/> 
-        :(
-            <div className={`modal ${isOpen ? 'open' : ''}`}>
-            <div className="modal-content">
-                
+            {loaderpage ? <Loader />
+                : (
+                    <div className={`modal ${isOpen ? 'open' : ''}`}>
+                        <div className="modal-content">
+
                             <div class="card rounded-3">
                                 <div class="card-body p-4">
                                     <div class="text-center mb-4">
-                                        
+
                                         <h6>Fill Payment Details</h6>
                                     </div>
                                     <form action="">
@@ -101,7 +142,7 @@ function PaymentModal({ isOpen, onClose, onPaymentDone,selectedSeats, movie }) {
 
                                         <div class="form-outline mb-4">
                                             <input type="text" id="formControlLgXsd" class="form-control" placeholder='Name as Per Card'
-                                                 />
+                                            />
                                             <label class="form-label" for="formControlLgXsd">Cardholder's Name</label>
                                         </div>
 
@@ -132,15 +173,15 @@ function PaymentModal({ isOpen, onClose, onPaymentDone,selectedSeats, movie }) {
                                         </div>
 
                                         {/* <button class="btn btn-success btn-lg btn-block">Add card</button> */}
-                                        {cvv?<button class="btn btn-success btn-lg btn-block" onClick={handleBookSeats}>Confirm Payment</button>:
-                                        <button class="btn btn-success btn-lg btn-block"onClick={handlePaymentDone} disabled>Cancel</button>}
+                                        {cvv ? <button class="btn btn-success btn-lg btn-block" onClick={handleBookSeats}>Confirm Payment</button> :
+                                            <button class="btn btn-success btn-lg btn-block" onClick={handlePaymentDone} disabled>Cancel</button>}
 
                                         <button class="btn btn-success btn-lg btn-block" onClick={onClose}>Cancel</button>
                                     </form>
                                 </div>
-                            </div>                      
-            </div>
-        </div>)}
+                            </div>
+                        </div>
+                    </div>)}
         </>
     );
 }

@@ -237,19 +237,20 @@ class BookingView(APIView):
         booking=Booking.objects.filter(user=request.user.id)
         serializer=BookingDetailsSerializer(booking,many=True).data
         return Response(serializer, status=status.HTTP_200_OK)
-    def post(self,request):
+    def post(self,request,id=None):
+        print(request.data)
         seats=request.data.get("seats",[])
         allSeats= Seat.objects.filter(id__in=seats)
-        print("hello",allSeats)
+        # print("hello",allSeats)
         is_reserved=allSeats.filter(is_reserved__in=[True])
-        print(is_reserved)
+        # print(is_reserved)
         if is_reserved:
             return Response({"message":"seats already book"},status=status.HTTP_400_BAD_REQUEST)
         data=request.data
-        print(request.data)
+        # print(request.data)
         data["user"]=request.user.id
         total_price=allSeats.aggregate(sum=Sum("price"))
-        print(total_price)
+        # print(total_price)
         data["total_cost"]=total_price["sum"]
         serializer=BookingSerializer(data=data)
         if serializer.is_valid():
