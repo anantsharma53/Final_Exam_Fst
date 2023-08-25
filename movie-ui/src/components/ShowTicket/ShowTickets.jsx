@@ -9,7 +9,7 @@ function ShowTicket() {
     const token = localStorage.getItem('token')
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-
+    const[deletes,setDeletes]=useState(0)
     useEffect(() => {
         fetch('http://127.0.0.1:8000/api/movies/seatbooking/', {
             method: 'GET',
@@ -32,10 +32,11 @@ function ShowTicket() {
                 setLoading(false); // Set loading to false in case of an error
             });
 
-    }, [token]);
+    }, [deletes]);
     function DeleteTicket(id) {
+        
         console.log(id)
-        fetch(`http://127.0.0.1:8000/api/movies/seatbooking/${id}/`, {
+        fetch(`http://127.0.0.1:8000/api/movies/seatbooking/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,8 +44,9 @@ function ShowTicket() {
             },
         })
             .then(response => {
-                if (response.status === 204) {
-
+                
+                if (response.status === 200) {
+                    setDeletes(prevDeletes => prevDeletes + 1);
                     console.error('deleting done:', response.status);
                 } else {
                     // Handle other response statuses here

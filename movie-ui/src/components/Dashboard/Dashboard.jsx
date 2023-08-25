@@ -27,6 +27,7 @@ function Dashboard() {
     const [showModal3, setShowModal3] = useState(false);
     const [showModal4, setShowModal4] = useState(false);
     const [showModal5, setShowModal5] = useState(false);
+    const [deletes, setDeletes] = useState(0);
     // Function to fetch movie list List from the API
     function movieList(pageNumber) {
         const user = JSON.parse(localStorage.getItem('user_details'));
@@ -77,7 +78,7 @@ function Dashboard() {
         const storedPage = localStorage.getItem("currentPage");
         setCurrentPage(storedPage ? parseInt(storedPage) : 1);
         movieList(currentPage);
-    }, [currentPage]);
+    }, [currentPage,deletes]);
 
     console.log(movie);
 
@@ -101,7 +102,7 @@ function Dashboard() {
         setShowModal(false);
     };
     function DeleteMovie(id) {
-        fetch(`http://127.0.0.1:8000/api/movies/${id}/`, {
+        fetch(`http://127.0.0.1:8000/api/movies/del/${id}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -110,6 +111,7 @@ function Dashboard() {
         })
             .then(response => {
                 if (response.status === 204) {
+                    setDeletes(prevDeletes => prevDeletes + 1);
                     movieList(currentPage);
                     console.error('deleting done:', response.status);
                 } else {

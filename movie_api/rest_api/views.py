@@ -300,8 +300,8 @@ class BookingView(APIView):
         try:
             booking=Booking.objects.get(id=id,user=request.user.id)
             unreserved=booking.seats.values_list("id",flat=True)
-            booking.delete()
             Seat.objects.filter(id__in=list(unreserved)).update(is_reserved=False)
+            booking.delete()
             return Response({"message":"booking canceled"},status=status.HTTP_200_OK)
         except:
             return Response({"message":"booking not avilable"},status=status.HTTP_404_NOT_FOUND)
