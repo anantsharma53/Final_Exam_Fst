@@ -2,7 +2,7 @@
 
 .plan{
     background-color: rgba(247, 157, 134, 0.5); 
-    height: 100%;
+    
 }
 
 .timings{
@@ -26,12 +26,13 @@
 .timeBox{
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 70%;
     border-bottom: 1px solid #d6ba3f;
 }
 
 .name{
-    padding: 30px;
+    height: 70%;
+    /* padding: 30px; */
     color: white;
     justify-content: space-between;
     border-right: 1px solid #d6ba3f;
@@ -59,9 +60,9 @@
 }
 
 .silverPlus{
-    margin-top: 10px;
+    margin-top: 5px;
     width: 350px;
-    color: #708f86;
+    color: #edf3f1;
     text-align: center;
 }
 

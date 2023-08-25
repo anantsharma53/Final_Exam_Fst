@@ -62,7 +62,7 @@ function SeatLayout(props) {
   return (
     <>
       <div>
-        <h1>Seat Reservation</h1>
+        <h4>Seat Reservation</h4>
         <div className="seat-layout">
           {seats.map((seat) => (
             <div
@@ -122,9 +122,7 @@ function SeatLayout(props) {
         :
         <button class="btnBookTickets" disabled>Book Selected Seats</button>
       }
-      <div className="custom-div">
-    
-</div>
+
 
     </>
 

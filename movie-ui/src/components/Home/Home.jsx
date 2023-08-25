@@ -62,18 +62,19 @@ export function Home() {
                 backgroundImage: 'url("https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg")',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',  // Adjust the background size as needed
-                backgroundPosition: 'center'  // Adjust the background position as needed
+                backgroundPosition: 'center',
+                height:'100%'  // Adjust the background position as needed
             }}>
 
                 <div className="banner">
                     <h1 className="header1">
                         GET <span className="header2">MOVIE</span> TICKETS</h1>
-                    <p>
+                    {/* <p>
                         Buy movie tickets in advance, find movie times watch trailers,
                     </p>
                     <p>
                         read movie reviews and much more
-                    </p>
+                    </p> */}
                 </div>
                 {<SearchPanel
                     onNameChange={handleNameChange}

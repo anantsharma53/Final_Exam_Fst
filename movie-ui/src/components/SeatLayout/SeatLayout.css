@@ -55,9 +55,9 @@ button {
 }
 
 .seat {
-  width: 40px;
+  width: 29px;
   /* Adjust seat width as needed */
-  height: 40px;
+  height: 29px;
   /* Adjust seat height as needed */
   background-color: #ccc;
   border: 1px solid #999;
