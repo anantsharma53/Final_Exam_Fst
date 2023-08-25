@@ -90,7 +90,7 @@ class GetMovieViews(APIView):
     def get(self, request):
         page_number =request.GET.get('page',1)
         movies=Movie.objects.all().order_by("id")
-        paginator = Paginator(movies, 5)
+        paginator = Paginator(movies, 2)
         page = paginator.get_page(page_number)
         users_on_page = page.object_list
         user_serialized = MovieSerializer(users_on_page, many=True).data

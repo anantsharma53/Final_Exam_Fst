@@ -262,8 +262,9 @@ function Dashboard() {
                         {showModal4 && <TheaterUpdate setShowModal4={setShowModal4} />}
                         {showModal5 && <UpdateSeat setShowModal5={setShowModal5} />}
 
-
+                        <img src="https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg"/>
                     </div>
+                    
                 </div>) :
                 (<>
                     <ShowTicket />
