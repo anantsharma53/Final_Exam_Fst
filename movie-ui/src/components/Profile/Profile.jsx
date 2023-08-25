@@ -78,63 +78,63 @@ function Profile(props) {
           <form class="profileUpdateBox" onSubmit={handleFormSubmit}>
             <div className="mb-3 formDisplay">
               <div>
-              <label htmlFor="name" >Name</label>
+                <label htmlFor="name" >Name</label>
               </div>
               <div>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleFormChange}
-              />
-            </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                />
+              </div>
             </div>
             <div className="mb-3 formDisplay">
               <div>
-              <label htmlFor="username" >Username</label>
+                <label htmlFor="username" >Username</label>
               </div>
               <div>
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleFormChange}
-              />
-            </div>
-            </div>
-            <div className="mb-3 formDisplay">
-            <div>
-              <label htmlFor="email" >Email</label>
-            </div>
-            <div>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleFormChange}
-              />
-            </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleFormChange}
+                />
+              </div>
             </div>
             <div className="mb-3 formDisplay">
-            <div>
-              <label htmlFor="mobile_number" >Mobile Number</label>
+              <div>
+                <label htmlFor="email" >Email</label>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                />
+              </div>
             </div>
-            <div>
-              <input
-                type="text"
-                className="form-control"
-                id="mobile_number"
-                name="mobile_number"
-                value={formData.mobile_number}
-                onChange={handleFormChange}
-              />
-            </div>
+            <div className="mb-3 formDisplay">
+              <div>
+                <label htmlFor="mobile_number" >Mobile Number</label>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="mobile_number"
+                  name="mobile_number"
+                  value={formData.mobile_number}
+                  onChange={handleFormChange}
+                />
+              </div>
             </div>
             <button type="submit" className="btnupdate">Save Changes</button>
           </form>

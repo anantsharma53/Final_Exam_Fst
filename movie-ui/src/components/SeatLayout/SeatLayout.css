@@ -1,4 +1,4 @@
-.seat-grid {
+/* .seat-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -28,4 +28,117 @@
 
 button {
   margin-top: 10px;
+} */
+.seat-layout {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.screen {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.seats {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  /* Adjust the number of columns and seat width as needed */
+  gap: 10px;
+  /* Adjust the gap between seats as needed */
+}
+
+.seat {
+  width: 40px;
+  /* Adjust seat width as needed */
+  height: 40px;
+  /* Adjust seat height as needed */
+  background-color: #ccc;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selectshow {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: large;
+}
+
+.selectshow::placeholder {
+  color: white;
+  font-weight: 500;
+}
+
+.selectshow {
+  color: white !important;
+}
+
+.selectshow {
+  display: flex;
+  justify-content: inherit;
+  align-items: center;
+}
+
+.selectshow label {
+  color: #111111;
+  margin: 0 12px;
+}
+
+.selected {
+  background-color: #007bff;
+  /* Color for selected seats */
+  color: #fff;
+}
+
+.reserved {
+  background-color: red;
+  /* or any other red styling */
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.legend {
+  margin-top: 20px;
+}
+
+.legend-item {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.legend-item .seat {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.legend-item span {
+  vertical-align: middle;
+}
+
+.btnBookTickets {
+
+  margin-top: 5px;
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.custom-div {
+  min-height: 50px;
+  /* Other styles for your div */
 }

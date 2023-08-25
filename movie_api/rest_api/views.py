@@ -168,7 +168,7 @@ class SeatView(APIView):
             seat=Seat.objects.get(id=id)
         except Seat.DoesNotExist:
             return Response({"message":"seat not found"},status=status.HTTP_404_NOT_FOUND)
-        serializer=SeatSerializer(seat,data=request.data)
+        serializer=SeatSerializer(seat,data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
@@ -197,6 +197,18 @@ class TheaterView(APIView):
         print(theaters)
         serializer=TheaterSerializer(theaters, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+class TheaterViewMD(APIView):
+    def get(self, request, movie_id):
+        print(request.data)
+        try:
+            movie = Movie.objects.get(id=movie_id)
+            serializer=MovieSerializer(movie).data
+            theaters=Theater.objects.filter(movie=movie_id).values()
+            serializer["theaters"]=list(theaters)
+            return Response(serializer,status=status.HTTP_200_OK)
+        except Movie.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
 class TheaterSeats(APIView):
     def get(self,request,id):

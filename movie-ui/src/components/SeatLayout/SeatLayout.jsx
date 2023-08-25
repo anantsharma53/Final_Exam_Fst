@@ -17,8 +17,8 @@ function SeatLayout(props) {
   // const [selectedShowDate, setSelectedShowDate] = useState();
   // const [reservedSeat, setReservedSeat] = useState([]);
   console.log(theaterdetails)
-  const seats=theaterdetails.seats
-  const movie_id=theaterdetails.movie
+  const seats = theaterdetails.seats
+  const movie_id = theaterdetails.movie
   console.log(seats)
   const handleSeatClick = (seat) => {
     if (!seat.is_reserved) {
@@ -63,21 +63,44 @@ function SeatLayout(props) {
     <>
       <div>
         <h1>Seat Reservation</h1>
-        <div className="seat-grid">
+        <div className="seat-layout">
           {seats.map((seat) => (
             <div
               key={seat.id}
               className={`seat ${seat.is_reserved ? 'reserved' : selectedSeats.includes(seat) ? 'selected' : ''}`}
               onClick={() => handleSeatClick(seat)}
             >
-              {seat.seat_number}
+              {/* {seat.seat_number} */}
+              {seat.is_reserved ? (
+                <img src="https://cdn-icons-png.flaticon.com/512/1683/1683809.png" alt="Reserved Chair" style={{ width: '25px', height: '25px' }} />
+              ) : (
+                <img src="https://cdn-icons-png.flaticon.com/512/1683/1683809.png" alt="Empty Chair" style={{ width: '25px', height: '25px' }} />
+              )}
             </div>
           ))}
+          
+          
+          
         </div>
-        <button onClick={() => alert(`Selected Seats: ${selectedSeats.map((seat) => seat.id).join(', ')}`)}>
+        <div className="legend">
+            <div className="legend-item">
+              <div className="seat selected"></div>
+              <span>Selected</span>
+            </div>
+            <div className="legend-item">
+              <div className="seat"></div>
+              <span>Available</span>
+            </div>
+            <div className="legend-item">
+              <div className="seat reserved"></div>
+              <span>Reserved</span>
+            </div>
+          </div>
+        {/* <button onClick={() => alert(`Selected Seats: ${selectedSeats.map((seat) => seat.id).join(', ')}`)}>
           Reserve Selected Seats
-        </button>
+        </button> */}
       </div>
+
 
 
       <PaymentModal
@@ -99,9 +122,12 @@ function SeatLayout(props) {
         :
         <button class="btnBookTickets" disabled>Book Selected Seats</button>
       }
+      <div className="custom-div">
+    
+</div>
 
     </>
-    
+
   );
 }
 

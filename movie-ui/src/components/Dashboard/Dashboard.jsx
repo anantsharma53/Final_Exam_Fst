@@ -11,6 +11,8 @@ import Home from "../Home/Home";
 import ShowTicket from "../ShowTicket/ShowTickets";
 import Profile from "../Profile/Profile";
 import SeatUpload from "../SeatUpload/THEMovie/SeatUpload";
+import UpdateSeat from "../UpdateSeat/UpdateSeat";
+
 function Dashboard() {
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user_details'));
@@ -24,6 +26,7 @@ function Dashboard() {
     const [showModal2, setShowModal2] = useState(false);
     const [showModal3, setShowModal3] = useState(false);
     const [showModal4, setShowModal4] = useState(false);
+    const [showModal5, setShowModal5] = useState(false);
     // Function to fetch movie list List from the API
     function movieList(pageNumber) {
         const user = JSON.parse(localStorage.getItem('user_details'));
@@ -54,6 +57,7 @@ function Dashboard() {
                 .catch((err) => {
                     console.log(err);
                     setError(err);
+                    navigate('/signin')
                 });
         }
         else {
@@ -89,6 +93,9 @@ function Dashboard() {
     const openModal4 = () => {
         setShowModal4(true);
     };
+    const openModal5 = () => {
+        setShowModal5(true);
+    };
 
     const closeModal = () => {
         setShowModal(false);
@@ -101,18 +108,18 @@ function Dashboard() {
                 "Authorization": `Bearer ${token}`,
             },
         })
-        .then(response => {
-            if (response.status === 204) {
-                movieList(currentPage);
-                console.error('deleting done:', response.status);
-            } else {
-                // Handle other response statuses here
-                console.error('Error deleting movie:', response.status);
-            }
-        })
-        .catch(error => {
-            console.error('Error deleting movie:', error);
-        });
+            .then(response => {
+                if (response.status === 204) {
+                    movieList(currentPage);
+                    console.error('deleting done:', response.status);
+                } else {
+                    // Handle other response statuses here
+                    console.error('Error deleting movie:', response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting movie:', error);
+            });
     }
     return (
         <>
@@ -120,30 +127,33 @@ function Dashboard() {
             {isSuperUser ? (
                 <div>
                     <Navbar />
-                    <div className="buttonContainer">
-                        <button type="button" className="openModalBtn" onClick={openModal}>
-                            Upload Movie
-                        </button>
-                        <button type="button" className="openModalBtn" onClick={openModal2}>
-                            Upload Theater Movie
-                        </button>
-                        <button type="button" className="openModalBtn" onClick={openModal4}>
-                            Update Theater Details
-                        </button>
-                        <button type="button" className="openModalBtn" onClick={openModal3}>
-                            Upload Seat Details
-                        </button>
-                        <button type="button" className="openModalBtn" onClick={openModal}>
-                            Upload Movie
-                        </button>
 
-
-                    </div>
                     <div className="dashboardContainer">
+                        <div className="buttonContainer">
+                            <button type="button" className="openModalBtn" onClick={openModal}>
+                                Upload Movie
+                            </button>
+                            <button type="button" className="openModalBtn" onClick={openModal2}>
+                                Upload Theater Movie
+                            </button>
+                            <button type="button" className="openModalBtn" onClick={openModal4}>
+                                Update Theater Details
+                            </button>
+                            <button type="button" className="openModalBtn" onClick={openModal3}>
+                                Upload Seat Details
+                            </button>
+                            <button type="button" className="openModalBtn" onClick={openModal5}>
+                                Update Seat Details
+                            </button>
+                            <button type="button" className="openModalBtn" onClick={openModal}>
+                                Upload Movie
+                            </button>
+                        </div>
+                        <div className="main">
                         <Profile />
-                        <div>
+                        <div class="table">
                             {isSuperUser &&
-                                (<div class="container mt-5 table">
+                                (<div >
                                     <div class="row ">
                                         <div class="main-box clearfix ">
                                             <div class="table-responsive">
@@ -244,11 +254,13 @@ function Dashboard() {
                                 </div>)
                             }
                         </div>
+                        </div>
 
                         {showModal && <MovieUpload setShowModal={setShowModal} />}
                         {showModal2 && <MovieThUpload setShowModal2={setShowModal2} />}
                         {showModal3 && <SeatUpload setShowModal3={setShowModal3} />}
                         {showModal4 && <TheaterUpdate setShowModal4={setShowModal4} />}
+                        {showModal5 && <UpdateSeat setShowModal5={setShowModal5} />}
 
 
                     </div>
