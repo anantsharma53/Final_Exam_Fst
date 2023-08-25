@@ -63,14 +63,16 @@ export function BookTicket() {
                             </div>
                             <div className="right">
                                 <div className="timeBox">
+                                <p className="time">Start Date: {formatDate(theater.movie_timing)}</p>
+                                        <p className="time">Show Time: {formatTime(theater.movie_timing)}</p>
 
-                                    <Link
+                                    {/* <Link
                                         className="link"
                                         to={'/movie/seatPlan/' + theater.id}
                                     >
                                         <p className="time">Start Date: {formatDate(theater.movie_timing)}</p>
                                         <p className="time">Show Time: {formatTime(theater.movie_timing)}</p>
-                                    </Link>
+                                    </Link> */}
 
                                 </div>
                             </div>

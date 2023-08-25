@@ -89,15 +89,14 @@ const formatTime = (dateTimeString) => {
                                             <div className='row'>
                                                 <span>Show avilabe from: {formatDate(movietheater.movie_timing)}</span>
                                                 <span>show Time: {formatTime(movietheater.movie_timing)}</span>
-                                                {/* <span>Second Show: {theater.second_show}</span>
-                                                <span>Third Show: {theater.third_show}</span> */}
+                                                
     
                                             </div>
                                             <p>Language: {movie.language}</p>
                                             <p>Movie Duration: {movie.movie_length}</p>
                                             <p><StarRating rating={movie.rating} /></p>
                                             <p>Rating: {movie.rating}</p>
-                                            <a href={`${movie.id}/bookticket`} className="btnBookTickets">Book Tickets</a>
+                                            <a href={`${movietheater.id}/bookticket`} className="btnBookTickets">Book Tickets</a>
                                             <Link to='/' class="btnBookTickets">Go Back or Reshedule</Link>
                                         </div>
 
