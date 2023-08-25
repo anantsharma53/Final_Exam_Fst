@@ -12,7 +12,8 @@
 }
 
 .btn-primary{
-    background-image: -webkit-linear-gradient(169deg, #5560ff 17%, #aa52a1 63%, #ff4343 100%);
+    /* background-image: -webkit-linear-gradient(169deg, #5560ff 17%, #aa52a1 63%, #ff4343 100%); */
+    background-color: linear-gradient(to right  #d8363a,#ee7724,#ee7724, #d8363a );
     width: 140px;
     height: 45px;
     display: flex;
