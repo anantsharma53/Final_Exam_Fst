@@ -5,10 +5,12 @@ import './Dashboard.css'
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import MovieUpload from "../MovieUpload/MovieUpload";
+import TheaterUpdate from '../TheaterUpdate/TheaterUpdate';
 import MovieThUpload from "../THEMovie/THEMovie";
 import Home from "../Home/Home";
 import ShowTicket from "../ShowTicket/ShowTickets";
 import Profile from "../Profile/Profile";
+import SeatUpload from "../SeatUpload/THEMovie/SeatUpload";
 function Dashboard() {
     const navigate = useNavigate()
     const user = JSON.parse(localStorage.getItem('user_details'));
@@ -20,6 +22,8 @@ function Dashboard() {
     const [totalPages, setTotalPages] = useState(1);
     const [showModal, setShowModal] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
+    const [showModal3, setShowModal3] = useState(false);
+    const [showModal4, setShowModal4] = useState(false);
     // Function to fetch movie list List from the API
     function movieList(pageNumber) {
         const user = JSON.parse(localStorage.getItem('user_details'));
@@ -79,6 +83,12 @@ function Dashboard() {
     const openModal2 = () => {
         setShowModal2(true);
     };
+    const openModal3 = () => {
+        setShowModal3(true);
+    };
+    const openModal4 = () => {
+        setShowModal4(true);
+    };
 
     const closeModal = () => {
         setShowModal(false);
@@ -115,10 +125,13 @@ function Dashboard() {
                             Upload Movie
                         </button>
                         <button type="button" className="openModalBtn" onClick={openModal2}>
-                            Update Theater Movie
+                            Upload Theater Movie
                         </button>
-                        <button type="button" className="openModalBtn" onClick={openModal}>
-                            Upload Movie
+                        <button type="button" className="openModalBtn" onClick={openModal4}>
+                            Update Theater Details
+                        </button>
+                        <button type="button" className="openModalBtn" onClick={openModal3}>
+                            Upload Seat Details
                         </button>
                         <button type="button" className="openModalBtn" onClick={openModal}>
                             Upload Movie
@@ -234,6 +247,9 @@ function Dashboard() {
 
                         {showModal && <MovieUpload setShowModal={setShowModal} />}
                         {showModal2 && <MovieThUpload setShowModal2={setShowModal2} />}
+                        {showModal3 && <SeatUpload setShowModal3={setShowModal3} />}
+                        {showModal4 && <TheaterUpdate setShowModal4={setShowModal4} />}
+
 
                     </div>
                 </div>) :
