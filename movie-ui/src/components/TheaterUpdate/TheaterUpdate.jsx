@@ -125,7 +125,7 @@ function TheaterUpdate({ setShowModal4 }) {
             <div className="modalContainer">
                 <div className="titleCloseBtn">
                     <div>
-                        <h3>Upload Theater</h3>
+                        <h3>Update Theater Details</h3>
                     </div>
                     <div>
                         <button onClick={() => setShowModal4(false)}>X</button>

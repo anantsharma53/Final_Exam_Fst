@@ -59,7 +59,7 @@ class UserUpdatView(APIView):
             serializer = UserSerializer(user, data=data, partial=True)
             if serializer.is_valid():
                 serializer.save()
-                return JsonResponse(serializer.data)
+                return JsonResponse(serializer.data,status.HTTP_202_ACCEPTED)
             return JsonResponse(serializer.errors, status=400)
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
@@ -231,6 +231,7 @@ class TheaterViewMD(APIView):
             movie = Movie.objects.get(id=movie_id)
             serializer=MovieSerializer(movie).data
             theaters=Theater.objects.filter(movie=movie_id).values()
+            print(theaters)
             serializer["theaters"]=list(theaters)
             return Response(serializer,status=status.HTTP_200_OK)
         except Movie.DoesNotExist:

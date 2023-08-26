@@ -28,7 +28,7 @@ function Dashboard() {
     const [showModal4, setShowModal4] = useState(false);
     const [showModal5, setShowModal5] = useState(false);
     const [deletes, setDeletes] = useState(0);
-    // Function to fetch movie list List from the API
+   
     function movieList(pageNumber) {
         const user = JSON.parse(localStorage.getItem('user_details'));
         const isSuperUser = user && user.is_superuser;
@@ -66,7 +66,28 @@ function Dashboard() {
         }
 
     }
-
+    function DeleteMovie(id) {
+        fetch(`http://127.0.0.1:8000/api/movies/del/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 204) {
+                    setDeletes(prevDeletes => prevDeletes + 1);
+                    movieList(currentPage);
+                    console.error('deleting done:', response.status);
+                } else {
+                    // Handle other response statuses here
+                    console.error('Error deleting movie:', response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting movie:', error);
+            });
+    }
 
 
 
@@ -101,28 +122,8 @@ function Dashboard() {
     const closeModal = () => {
         setShowModal(false);
     };
-    function DeleteMovie(id) {
-        fetch(`http://127.0.0.1:8000/api/movies/del/${id}/`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${token}`,
-            },
-        })
-            .then(response => {
-                if (response.status === 204) {
-                    setDeletes(prevDeletes => prevDeletes + 1);
-                    movieList(currentPage);
-                    console.error('deleting done:', response.status);
-                } else {
-                    // Handle other response statuses here
-                    console.error('Error deleting movie:', response.status);
-                }
-            })
-            .catch(error => {
-                console.error('Error deleting movie:', error);
-            });
-    }
+    
+    
     return (
         <>
 
@@ -136,7 +137,7 @@ function Dashboard() {
                                 Upload Movie
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal2}>
-                                Upload Theater Movie
+                                Add Theater Movie
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal4}>
                                 Update Theater Details

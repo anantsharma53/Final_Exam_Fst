@@ -99,7 +99,7 @@ function MovieThUpload({ setShowModal2 }) {
             <div className="modalContainer">
                 <div className="titleCloseBtn">
                     <div>
-                        <h3>Upload Theater</h3>
+                        <h3>Add Theater Details</h3>
                     </div>
                     <div>
                         <button onClick={() => setShowModal2(false)}>X</button>

@@ -8,9 +8,9 @@ import Loader from "../Loader/Loader";
 export function MovieDetail() {
     const [movie, setMovie] = useState({});
     const [theater, setTheater] = useState([]);
-    const [theaterAviable, setTheaterAv] = useState(false);
+    const [theatersAvailable, setTheatersAvailable] = useState(true);
     const { id } = useParams();
-
+    console.log('id',id)
     useEffect(() => {
         const getProduct = () => {
             fetch(`http://127.0.0.1:8000/api/movie/${id}`)
@@ -24,33 +24,61 @@ export function MovieDetail() {
         }
         getProduct();
     }, [id]);
+    console.log('movie',movie)
+
+    // useEffect(() => {
+    //     const getTheater = () => {
+    //         fetch(`http://127.0.0.1:8000/api/theater/details/${id}/` )
+    //             .then(res => {
+    //                 if (res.status === 404) {
+    //                     setTheaterAv(false);
+    //                     return null;
+    //                 }
+    //                 return res.json();
+    //             })
+    //             .then(json => {
+    //                 if (json !== null && json.length === 0) {
+    //                     setTheaterAv(false);
+    //                 } else {
+    //                     setTheaterAv(true);
+    //                     setTheater(json.theaters);
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error("Error fetching theater data:", error);
+    //                 setTheaterAv(false);
+    //             });
+    //     }
+    //     getTheater();
+    // }, []);
 
     useEffect(() => {
-        const getTheater = () => {
-            fetch(`http://127.0.0.1:8000/api/theater/details/${id}/`)
-                .then(res => {
-                    if (res.status === 404) {
-                        setTheaterAv(false);
-                        return null;
-                    }
-                    return res.json();
-                })
-                .then(json => {
-                    if (json !== null && json.length === 0) {
-                        setTheaterAv(false);
-                    } else {
-                        setTheaterAv(true);
-                        setTheater(json.theaters);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching theater data:", error);
-                    setTheaterAv(false);
-                });
-        }
-        getTheater();
-    }, [id]);
-
+        console.log(movie.id)
+        // Define the API URL
+        const apiUrl = `http://127.0.0.1:8000/api/theater/details/${id}/`;
+    
+        // Fetch the data from the API
+        fetch(apiUrl)
+          .then((response) => {
+            if (response.status === 404) {
+              // Handle 404 response by updating the state
+              setTheatersAvailable(false);
+              return {}; // Return an empty object to prevent JSON parsing error
+            }
+            return response.json(); // Parse the JSON response
+          })
+          .then((data) => {
+            if (theatersAvailable) {
+              console.log(data);
+              setTheater(data.theaters);
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
+          
+      }, [id, theatersAvailable]);
+console.log(theater)
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" };
         return new Date(dateString).toLocaleDateString("en-US", options);
@@ -71,7 +99,7 @@ export function MovieDetail() {
                 backgroundPosition: 'center',
             }}>
                 {
-                    theaterAviable ? (
+                    theater.length!==0 ? (
                         <>
                             {theater && theater.map((movietheater, index) => (
                                 <div className="container my-0" key={index}>
