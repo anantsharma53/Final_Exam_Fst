@@ -9,11 +9,14 @@ function UpdateSeat({ setShowModal5 }) {
     const token = localStorage.getItem("token");
     const [selectedTheater, setSelectedTheater] = useState();
     const [selectedSeat, setSelectedSeat] = useState();
+    const [selectedTheaterDel, setSelectedTheaterDel] = useState();
+    const [selectedSeatDel, setSelectedSeatDel] = useState();
     const [seatNumber, setSeatNumber] = useState();
     const [category, setCategory] = useState();
-    const [price, setPrice] = useState(0.0);
+    const [price, setPrice] = useState();
     const [alltheater, setAlltheater] = useState([]);
     const [allseat, setAllseat] = useState([]);
+    const [deletes, setDeletes] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -59,16 +62,26 @@ function UpdateSeat({ setShowModal5 }) {
             })
             .then((data) => setAllseat(data.seats))
             .catch((error) => console.log(error));
-    }, [selectedTheater]);
+    }, [selectedTheater,deletes]);
 
     console.log(allseat);
     console.log(selectedSeat)
 
     const handleSeatSelection = (value) => {
         setSelectedSeat(value);
+        setSelectedSeatDel(value);
     };
-    const handleTheaterSelection=(value)=>{
+    const handleTheaterSelection = (value) => {
         setSelectedTheater(value);
+        setSelectedTheaterDel(value);
+    }
+    const handleSeatSelection1 = (value) => {
+        
+        setSelectedSeatDel(value);
+    };
+    const handleTheaterSelection1 = (value) => {
+        
+        setSelectedTheaterDel(value);
     }
 
     const handleSubmit = (e) => {
@@ -76,7 +89,7 @@ function UpdateSeat({ setShowModal5 }) {
 
         // Create your theaterData object with the values from state
         const theaterData = {
-            theater: selectedTheater,  
+            theater: selectedTheater,
             // movie: selectedSeat,    
             seat_number: seatNumber,
             is_reserved: false,
@@ -101,7 +114,7 @@ function UpdateSeat({ setShowModal5 }) {
                     setSeatNumber('');
                     setPrice('');
                     setCategory('');
-                    
+
                     // navigate("/dashboard"); // Redirect to another page after successful upload
                 } else if (res.status === 401) {
                     console.log("Unauthorized request");
@@ -111,22 +124,43 @@ function UpdateSeat({ setShowModal5 }) {
             .catch((err) => {
                 console.log(err);
             });
-     };
-
+    };
+    function DeleteSeat() {
+        fetch(`http://127.0.0.1:8000/api/seats/${selectedSeat}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                if (response.status === 204) {
+                    setDeletes(prevDeletes => prevDeletes + 1);
+                    console.error('deleting done:', response.status);
+                } else {
+                    // Handle other response statuses here
+                    console.error('Error deleting movie:', response.status);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting movie:', error);
+            });
+    }
     return (
         <div className="modalBackground">
             <div className="modalContainer">
                 <div className="titleCloseBtn">
                     <div>
-                        <h3>Add Edit and Delete Seat</h3>
+                        <h3>Update Seat Delete Seat</h3>
                     </div>
+
                     <div>
                         <button onClick={() => setShowModal5(false)}>X</button>
                     </div>
                 </div>
-               
+                <h3>Select Theater and Seat No only <br />to Unreserved</h3>
                 <form onSubmit={handleSubmit}>
-                    
+
                     <div className="searchOption">
                         <select
                             name="selectedTheater"
@@ -167,7 +201,7 @@ function UpdateSeat({ setShowModal5 }) {
                             <option style={{ color: 'black' }} value="Silver">Silver</option>
                             <option style={{ color: 'black' }} value="gold">Gold</option>
                             <option style={{ color: 'black' }} value="platinum">Platinum</option>
-                            
+
                         </select>
                     </div>
                     <div className="form-group">
@@ -175,6 +209,7 @@ function UpdateSeat({ setShowModal5 }) {
                         <input
                             type="text"
                             name="name"
+                            placeholder="Leave it Blank if not require"
                             value={seatNumber}
                             onChange={(e) => setSeatNumber(e.target.value)}
                             className="form-control"
@@ -185,19 +220,31 @@ function UpdateSeat({ setShowModal5 }) {
                         <input
                             type="number"
                             name="price"
+                            placeholder="Leave it Blank if not require"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             className="form-control"
                         />
                     </div>
-                    
-                    
+
+
                     <div className="footer">
                         <button onClick={() => setShowModal5(false)} id="cancelBtn">
                             Cancel
                         </button>
                         <button type="submit">Continue</button>
                     </div>
+                    <div className="titleCloseBtn">
+                        <div>
+                            <h3>Delete Seat</h3>
+                        </div>
+                    </div>
+                    <h3>Select Theater and Seat No only <br />to Delete</h3>
+                        <div className="footer">
+                        <div>
+                            <button id="cancelBtn" onClick={() => DeleteSeat()}>Delete</button>
+                        </div>
+                        </div>
                 </form>
             </div>
         </div>

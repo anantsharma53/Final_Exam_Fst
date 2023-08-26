@@ -110,6 +110,15 @@ class AddMovieAPIView(APIView):
             return Response({'message': 'Movie deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
         except Movie.DoesNotExist:
             return Response({'message': 'Movie not found'}, status=status.HTTP_404_NOT_FOUND)
+    def put(self, request, movie_id):
+        movie = Movie.objects.get(id=movie_id)
+        if not movie:
+            return Response({'message': 'Movie not found'}, status=status.HTTP_404_NOT_FOUND)
+        serializer = MovieSerializer(movie, data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GetMovieViews(APIView):
     permission_classes=[IsAuthenticated & IsAdminUser]   
@@ -292,6 +301,7 @@ class TheaterCreateView(APIView):
 class BookingView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request,id=None):
+        print(request.data)
         if id:
             try:
                 booking=Booking.objects.get(user=request.user.id, id=id)
@@ -332,3 +342,19 @@ class BookingView(APIView):
             return Response({"message":"booking canceled"},status=status.HTTP_200_OK)
         except:
             return Response({"message":"booking not avilable"},status=status.HTTP_404_NOT_FOUND)
+class BookingViewAdmin(APIView):        
+    permission_classes=[IsAuthenticated,IsAdminUser]
+    def get(self,request):  
+        page_number =request.GET.get('page',1)
+        booking=Booking.objects.all().order_by("id") 
+        paginator = Paginator(booking, 2) 
+        page = paginator.get_page(page_number)
+        tickets_on_page = page.object_list
+        tickets_serialized = BookingDetailsSerializer(tickets_on_page, many=True).data
+        return JsonResponse({
+        'results': tickets_serialized, 
+        'num_pages': paginator.num_pages, 
+        "total_user": booking.count()})
+
+        
+

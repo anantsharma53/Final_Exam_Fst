@@ -196,3 +196,10 @@
     margin-top: 0px; 
    
 }
+.profileBoxadmin{
+	/* background-color: white !important; */
+	border-radius: 5px;
+	width: 550px;
+	height: 250px;
+  
+  }

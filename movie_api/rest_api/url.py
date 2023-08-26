@@ -20,6 +20,7 @@ urlpatterns=[
     path('movies/theater/<int:id>/', TheaterSeats.as_view(), name='find-seat-to-the-theater'),
     path('movies/seatbooking/', BookingView.as_view(), name='Booking-to-theater'),
     path('movies/seatbooking/<int:id>', BookingView.as_view(), name='Booking-to-theater'),
+    path('movies/allseatbooking/', BookingViewAdmin.as_view(), name='Booking-to-theater'),
     path('theater/<int:movie_id>/',TheaterView.as_view(), name='Search-theater-movie_id' ),
     path('theater/',TheaterView.as_view(), name='Search-theater-movie_id' ),
     path('theater/details/<int:movie_id>/',TheaterViewMD.as_view(), name='Search-theater-movie_id' ),

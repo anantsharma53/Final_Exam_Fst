@@ -92,8 +92,8 @@ function TheaterUpdate({ setShowModal4 }) {
             },
         })
             .then((res) => {
-                if (res.status === 201) {
-                    alert("Successful Uploaded");
+                if (res.status === 204) {
+                    alert("Successful Updated")
                     setSelectedMovie('');
                     setName('');
                     setAddress('');
@@ -165,6 +165,7 @@ function TheaterUpdate({ setShowModal4 }) {
                         <input
                             type="text"
                             name="name"
+                            placeholder="Leave it Blank if not require"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="form-control"
@@ -175,6 +176,7 @@ function TheaterUpdate({ setShowModal4 }) {
                         <input
                             type="text"
                             name="address"
+                            placeholder="Leave it Blank if not require"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             className="form-control"
@@ -185,6 +187,7 @@ function TheaterUpdate({ setShowModal4 }) {
                         <input
                             type="text"
                             name="city"
+                            placeholder="Leave it Blank if not require"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                             className="form-control"
@@ -195,6 +198,7 @@ function TheaterUpdate({ setShowModal4 }) {
                         <input
                             type="text"
                             name="pincode"
+                            placeholder="Leave it Blank if not require"
                             value={pincode}
                             onChange={(e) => setPincode(e.target.value)}
                             className="form-control"
@@ -206,6 +210,7 @@ function TheaterUpdate({ setShowModal4 }) {
                             type="date"
                             id="movie-date"
                             name="movie-date"
+                            placeholder="Leave it Blank if not require"
                             value={movieDate}
                             onChange={handleDateChange}
                             required
@@ -217,6 +222,7 @@ function TheaterUpdate({ setShowModal4 }) {
                             type="time"
                             id="movie-time"
                             name="movie-time"
+                            placeholder="Leave it Blank if not require"
                             value={movieTime}
                             onChange={handleTimeChange}
                             required

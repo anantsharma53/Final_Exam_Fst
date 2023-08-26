@@ -60,20 +60,21 @@ function ShowTicket() {
 
     return (
         <>
-            <Navbar />
-            <div className="dashboardContainer" >
-                <div className="main">
-                    <Profile />
-                    {/* <div className="userprofile">
+           
                     
-                </div> */}
 
                     {loading ?
                         <Loader /> :
+                        <>
+                        
                         <div className="usertickets">
+                            
                             <div class="row ">
+                           
                                 <div class="main-box clearfix ">
+                                
                                     <div class="table-responsive">
+                                    {/* <h2>Booking Details</h2> */}
                                         <table className=" table user-list tablecolour">
                                             <thead>
                                                 <tr>
@@ -113,9 +114,9 @@ function ShowTicket() {
                                 </div>
                             </div>
                         </div>
+                        </>
                     }
-                </div>
-            </div>
+               
         </>
     );
 }
