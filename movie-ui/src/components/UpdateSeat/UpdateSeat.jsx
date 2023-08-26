@@ -105,7 +105,7 @@ function UpdateSeat({ setShowModal5 }) {
                     // navigate("/dashboard"); // Redirect to another page after successful upload
                 } else if (res.status === 401) {
                     console.log("Unauthorized request");
-                    navigate("/login");
+                    navigate("/signin");
                 }
             })
             .catch((err) => {

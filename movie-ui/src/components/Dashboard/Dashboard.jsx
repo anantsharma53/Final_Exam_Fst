@@ -137,19 +137,19 @@ function Dashboard() {
                                 Upload Movie
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal2}>
-                                Add Theater Movie
+                                Add Theater to Movie
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal4}>
                                 Update Theater Details
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal3}>
-                                Upload Seat Details
+                                Add Seats to the Theater
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal5}>
-                                Update Seat Details
+                                Update Seat Details and change Seat Status
                             </button>
                             <button type="button" className="openModalBtn" onClick={openModal}>
-                                Upload Movie
+                                Delete Seats From Theater
                             </button>
                         </div>
                         <div className="main">

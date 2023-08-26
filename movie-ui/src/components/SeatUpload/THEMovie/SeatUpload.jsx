@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 function SeatUpload({ setShowModal3 }) {
     const token = localStorage.getItem("token");
     const [selectedTheater, setSelectedTheater] = useState();
+    const[movieId,setMovieId] = useState()
     const [selectedMovie, setSelectedMovie] = useState();
     const [seatNumber, setSeatNumber] = useState();
+
     const [category, setCategory] = useState();
     const [price, setPrice] = useState(0.0);
     const [alltheater, setAlltheater] = useState([]);
-    const [allmovies, setAllMovies] = useState([]);
+    const [allmovies, setAllMovies] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,7 +29,7 @@ function SeatUpload({ setShowModal3 }) {
                     return response.json();
                 } else if (response.status !== 200) {
                     // Token expired, perform the redirect here
-                    window.location.href = "/login";
+                    window.location.href = "/signin";
                 } else {
                     throw new Error("Network response was not ok");
                 }
@@ -35,9 +37,16 @@ function SeatUpload({ setShowModal3 }) {
             .then((data) => setAlltheater(data))
             .catch((error) => console.log(error));
     }, [token]);
-    console.log(alltheater);
-    useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/movies/all/", {
+    console.log('alltheater',alltheater);
+    const handleMovieSelection = (value) => {
+        setSelectedMovie(value);
+    };
+    const handleTheaterSelection=(value)=>{
+        setSelectedTheater(value);
+        console.log('value', value);
+        const selectedTheater = alltheater.find((theater) => theater.id === parseInt(value));
+        console.log('selected', selectedTheater)
+    fetch(`http://127.0.0.1:8000/api/movie/${selectedTheater.movie}/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -49,20 +58,15 @@ function SeatUpload({ setShowModal3 }) {
                     return response.json();
                 } else if (response.status !== 200) {
                     // Token expired, perform the redirect here
-                    window.location.href = "/login";
+                    // window.location.href = "/signin";
                 } else {
                     throw new Error("Network response was not ok");
                 }
             })
             .then((data) => setAllMovies(data))
             .catch((error) => console.log(error));
-    }, [token]);
-    const handleMovieSelection = (value) => {
-        setSelectedMovie(value);
-    };
-    const handleTheaterSelection=(value)=>{
-        setSelectedTheater(value);
     }
+    console.log(allmovies)
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
@@ -95,23 +99,23 @@ function SeatUpload({ setShowModal3 }) {
                     setPrice('');
                     setCategory('');
                     
-                    // navigate("/dashboard"); // Redirect to another page after successful upload
+                    
                 } else if (res.status === 401) {
                     console.log("Unauthorized request");
-                    navigate("/login");
+                    navigate("/signin");
                 }
             })
             .catch((err) => {
                 console.log(err);
             });
      };
-
+    
     return (
         <div className="modalBackground">
             <div className="modalContainer">
                 <div className="titleCloseBtn">
                     <div>
-                        <h3>Add Edit and Delete Seat</h3>
+                        <h3>Add Seat To The Theater</h3>
                     </div>
                     <div>
                         <button onClick={() => setShowModal3(false)}>X</button>
@@ -119,6 +123,24 @@ function SeatUpload({ setShowModal3 }) {
                 </div>
                
                 <form onSubmit={handleSubmit}>
+                    
+                    <div className="searchOption">
+                        <select
+                            name="selectedTheater"
+                            value={selectedTheater}
+                            onChange={(e) => handleTheaterSelection(e.target.value)}
+                            >
+                        
+                            <option value="">Select Theater</option>
+                            {alltheater.map((alltheater) => (
+                                <option key={alltheater.id} value={alltheater.id}>
+                                    {alltheater.name}
+
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     <div className="searchOption">
                         <select
                             name="selectedMovie"
@@ -126,25 +148,10 @@ function SeatUpload({ setShowModal3 }) {
                             onChange={(e) => handleMovieSelection(e.target.value)}
                         >
                             <option value="">Select Movie</option>
-                            {allmovies.map((allmovie) => (
-                                <option key={allmovie.id} value={allmovie.id}>
-                                    {allmovie.title}
+                            <option key={allmovies.id} value={allmovies.id}>
+                                    {allmovies.title}
                                 </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="searchOption">
-                        <select
-                            name="selectedTheater"
-                            value={selectedTheater}
-                            onChange={(e) => handleTheaterSelection(e.target.value)}
-                        >
-                            <option value="">Select Theater</option>
-                            {alltheater.map((alltheater) => (
-                                <option key={alltheater.id} value={alltheater.id}>
-                                    {alltheater.name}
-                                </option>
-                            ))}
+                           
                         </select>
                     </div>
                     <div className="form-group">
