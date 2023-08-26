@@ -8,6 +8,7 @@ urlpatterns=[
     path('user/<int:pk>/', UserProfile.as_view(), name='user-profile'),
     path('movies/',csrf_exempt(AddMovieAPIView.as_view()),name='add-movie'),
     path('movies/del/<int:movie_id>/',AddMovieAPIView.as_view(),name='delete-movie'),
+    
     path('movies/list/',csrf_exempt(GetMovieViews.as_view()),name='list-movie'),
     path('movies/all/',csrf_exempt(MoviesAPI.as_view()),name='list-movie'),
     path('movies/genres/', GenreList.as_view(), name='genre-list'),
@@ -20,6 +21,7 @@ urlpatterns=[
     path('movies/theater/<int:id>/', TheaterSeats.as_view(), name='find-seat-to-the-theater'),
     path('movies/seatbooking/', BookingView.as_view(), name='Booking-to-theater'),
     path('movies/seatbooking/<int:id>', BookingView.as_view(), name='Booking-to-theater'),
+
     path('movies/allseatbooking/', BookingViewAdmin.as_view(), name='Booking-to-theater'),
     path('theater/<int:movie_id>/',TheaterView.as_view(), name='Search-theater-movie_id' ),
     path('theater/',TheaterView.as_view(), name='Search-theater-movie_id' ),
