@@ -166,8 +166,10 @@ function Dashboard() {
                                         <div class="row ">
                                             <div class="main-box clearfix ">
                                                 <div class="table-responsive">
-                                                    <h2>Movies Details</h2>
-                                                    <table class="table user-list">
+                                                    <div class="header1">
+                                                        Movies Details
+                                                    </div>
+                                                    <table class="table user-list tablecolour">
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center"><span>Sl No</span></th>
@@ -258,6 +260,10 @@ function Dashboard() {
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                <div class="header3">
+                                        All Booking Details
+                                    </div>
+                                    <AdminShowTicket />
                                             </div>
 
                                         </div>
@@ -272,20 +278,14 @@ function Dashboard() {
                         {showModal4 && <TheaterUpdate setShowModal4={setShowModal4} />}
                         {showModal5 && <UpdateSeat setShowModal5={setShowModal5} />}
                         {showModal6 && <UpdateMovie setShowModal6={setShowModal6} />}
-                        <div class="row ">
-                            <div class="main-box clearfix ">
-                                <div class="table-responsive">
-                                    <h2>All Booking Details</h2>
-                                </div>
-                            </div>
-                        </div>
+                
                         <div className="main">
                             <div className="profileBoxadmin">
                             </div>
-                                        <AdminShowTicket/>
                             
+
                         </div>
-                        <img src="https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg" />
+                        {/* <img src="https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg" /> */}
                     </div>
 
                 </div>) :

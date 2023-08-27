@@ -44,13 +44,13 @@ function Profile(props) {
   const handleUpdateClick = () => {
 
     // Show the modal when the button is clicked
-
+    setIsDeleteVisible(false);
     setIsUpdateFormVisible(!isUpdateFormVisible);
   };
   const handleDeleteClick = () => {
 
     // Show the modal when the button is clicked
-
+    setIsUpdateFormVisible(false);
     setIsDeleteVisible(!isDeleteVisible);
   };
 

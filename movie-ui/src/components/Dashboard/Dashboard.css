@@ -84,7 +84,7 @@
 
 /* USER LIST TABLE */
 .user-list {
-    width: 80%; /* Adjust the width as needed */
+    width: 100%; /* Adjust the width as needed */
 }
 .user-list tbody td > img {
     position: relative;
@@ -192,9 +192,16 @@
 .pagination-container {
     display: flex;
     justify-content: center;
-    margin-right: 25%;
+    margin-right: 5%;
     margin-top: 0px; 
+	
    
+}
+.pagination{
+	display: flex;
+	background-color: white;
+	width: auto;
+	
 }
 .profileBoxadmin{
 	/* background-color: white !important; */
@@ -203,3 +210,15 @@
 	height: 250px;
   
   }
+  .header1{
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+}
+.header3{
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+	align-items: center;
+	justify-content: center;
+}

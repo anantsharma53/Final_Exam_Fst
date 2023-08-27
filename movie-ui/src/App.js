@@ -10,26 +10,22 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { MovieDetail } from './components/MovieDetail/MovieDetail';
 import { BookTicket } from './components/BookTicket/BookTicket';
 import ShowTicket from './components/ShowTicket/ShowTickets';
-
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   return (
     <div className="App">
-      {/* <Provider store={store}> */}
         <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/signin' element={<Signin/>}/>
           <Route path='/signup' element={<Signup/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
+          <Route path='/dashboard' element={<ProtectedRoute Component={Dashboard} />}/>
           <Route path='/movie/:id/' element={<MovieDetail />} />
           <Route path='/movie/:id/bookticket' element={<BookTicket/>}/>
-          
-          <Route path='/getticket/' element={<ShowTicket/>}/>
+          <Route path='/getticket/' element={<ProtectedRoute Component={ShowTicket} />}/>
         </Routes>
         </BrowserRouter>
-        {/* </Provider> */}
-      
     </div>
   );
 }

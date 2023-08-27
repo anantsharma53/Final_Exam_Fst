@@ -77,10 +77,7 @@ function SeatLayout(props) {
                 <img src="https://cdn-icons-png.flaticon.com/512/1683/1683809.png" alt="Empty Chair" style={{ width: '25px', height: '25px' }} />
               )}
             </div>
-          ))}
-          
-          
-          
+          ))} 
         </div>
         <div className="legend">
             <div className="legend-item">
@@ -96,9 +93,6 @@ function SeatLayout(props) {
               <span>Reserved</span>
             </div>
           </div>
-        {/* <button onClick={() => alert(`Selected Seats: ${selectedSeats.map((seat) => seat.id).join(', ')}`)}>
-          Reserve Selected Seats
-        </button> */}
       </div>
 
 
