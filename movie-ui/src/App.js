@@ -11,6 +11,7 @@ import { MovieDetail } from './components/MovieDetail/MovieDetail';
 import { BookTicket } from './components/BookTicket/BookTicket';
 import ShowTicket from './components/ShowTicket/ShowTickets';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { ForgotUser } from './components/ForgotPassword/ForgotPassword';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/movie/:id/' element={<MovieDetail />} />
           <Route path='/movie/:id/bookticket' element={<BookTicket/>}/>
           <Route path='/getticket/' element={<ProtectedRoute Component={ShowTicket} />}/>
+          <Route path='/reset'element={<ForgotUser/>}/>
         </Routes>
         </BrowserRouter>
     </div>

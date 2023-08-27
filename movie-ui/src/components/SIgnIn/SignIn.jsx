@@ -103,9 +103,9 @@ export function Signin() {
               Remember Password
             </a>
           </span>
-          <a href="" className="form-label">
+          <Link to="/reset" className="form-label">
             Forgot Password
-          </a>
+          </Link>
         </div>
         <div className="btn-wrapper">
           <button className="btn btn-primary mb-3" type="button" onClick={handleSubmit}>

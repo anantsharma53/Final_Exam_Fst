@@ -118,6 +118,7 @@ function AdminShowTicket() {
                                                     <th className="text-center">Tickets Reference No</th>
                                                     <th className="text-center">User ID</th>
                                                     <th className="text-center">Movie Details</th>
+                                                    <th className="text-center">Theater/Screen ID</th>
                                                     <th className="text-center">Seat Details</th>
                                                     <th className="text-center">Total Bill</th>
                                                     <th className="text-center">Booing Date And Time</th>
@@ -136,6 +137,10 @@ function AdminShowTicket() {
                                                                 <p>Director: {booking.movie.director}</p>
                                                             </span>
                                                         </td>
+                                                        <td className="text-center">
+                                                        {booking.seats.map((seat, index) => (
+                                                                <span>Screening ID-{seat.theater}<br></br></span>
+                                                                ))}</td>
                                                         <td className="text-center">
                                                             {booking.seats.map((seat, index) => (
                                                                 <span key={index}>{seat.seat_number}<br /></span>

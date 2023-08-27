@@ -6,6 +6,7 @@ urlpatterns=[
     path('user/signup/',csrf_exempt(SignUpView.as_view()),name='user-signup'),
     path('user/signin/',csrf_exempt(SignInView.as_view()),name='user-login'),
     path('user/<int:pk>/', UserProfile.as_view(), name='user-profile'),
+    path('user/reset/', UserProfile.as_view(), name='user-profile'),
     path('movies/',csrf_exempt(AddMovieAPIView.as_view()),name='add-movie'),
     path('movies/del/<int:movie_id>/',AddMovieAPIView.as_view(),name='delete-movie'),
     
