@@ -127,10 +127,10 @@ class GetMovieViews(APIView):
         movies=Movie.objects.all().order_by("id")
         paginator = Paginator(movies, 2)
         page = paginator.get_page(page_number)
-        users_on_page = page.object_list
-        user_serialized = MovieSerializer(users_on_page, many=True).data
+        movie_on_page = page.object_list
+        movie_serialized = MovieSerializer(movie_on_page, many=True).data
         return JsonResponse({
-        'results': user_serialized, 
+        'results': movie_serialized, 
         'num_pages': paginator.num_pages, 
         "total_user": movies.count()})
     
@@ -316,16 +316,12 @@ class BookingView(APIView):
         print(request.data)
         seats=request.data.get("seats",[])
         allSeats= Seat.objects.filter(id__in=seats)
-        # print("hello",allSeats)
         is_reserved=allSeats.filter(is_reserved__in=[True])
-        # print(is_reserved)
         if is_reserved:
             return Response({"message":"seats already book"},status=status.HTTP_400_BAD_REQUEST)
         data=request.data
-        # print(request.data)
         data["user"]=request.user.id
         total_price=allSeats.aggregate(sum=Sum("price"))
-        # print(total_price)
         data["total_cost"]=total_price["sum"]
         serializer=BookingSerializer(data=data)
         if serializer.is_valid():
@@ -335,13 +331,15 @@ class BookingView(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     def delete(self,request,id):
         try:
-            booking=Booking.objects.get(id=id,user=request.user.id)
+            # booking=Booking.objects.get(id=id,user=request.user.id)
+            booking=Booking.objects.get(id=id)
             unreserved=booking.seats.values_list("id",flat=True)
             Seat.objects.filter(id__in=list(unreserved)).update(is_reserved=False)
             booking.delete()
             return Response({"message":"booking canceled"},status=status.HTTP_200_OK)
         except:
             return Response({"message":"booking not avilable"},status=status.HTTP_404_NOT_FOUND)
+
 class BookingViewAdmin(APIView):        
     permission_classes=[IsAuthenticated,IsAdminUser]
     def get(self,request):  

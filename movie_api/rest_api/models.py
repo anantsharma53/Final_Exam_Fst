@@ -77,6 +77,7 @@ class Booking(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     seats = models.ManyToManyField(Seat)
     total_cost = models.FloatField(default=0.00)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.user.username} - {self.movie.title}"

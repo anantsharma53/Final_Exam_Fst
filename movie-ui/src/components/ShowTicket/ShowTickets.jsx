@@ -57,6 +57,15 @@ function ShowTicket() {
                 console.error('Error deleting movie:', error);
             });
     }
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString("en-US", options);
+    }
+
+    const formatTime = (dateTimeString) => {
+        const options = { hour: 'numeric', minute: 'numeric', hour12: true, timeZone: 'UTC' };
+        return new Date(dateTimeString).toLocaleString('en-US', options);
+    };
 
     return (
         <>
@@ -82,6 +91,7 @@ function ShowTicket() {
                                                     <th className="text-center">Movie Details</th>
                                                     <th className="text-center">Seat Details</th>
                                                     <th className="text-center">Total Bill</th>
+                                                    <th className="text-center">Booing Date And Time</th>
                                                     <th className="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -102,6 +112,7 @@ function ShowTicket() {
                                                             ))}
                                                         </td>
                                                         <td className="text-center">Rs{booking.total_cost}/-</td>
+                                                        <td className="text-center">{formatDate(booking.created_at)}</td>
                                                         <td className="tktbox">
                                                             <button type="button" class="btn btn-success">Print</button>
                                                             <button type="button" class="btn btn-danger" onClick={() => DeleteTicket(booking.id)}>Cancel</button>
