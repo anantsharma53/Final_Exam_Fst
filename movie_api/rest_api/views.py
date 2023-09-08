@@ -65,6 +65,7 @@ class UserUpdatView(APIView):
             return JsonResponse({"error": "Invalid JSON"}, status=400)
 
 class UserProfile(APIView):
+    permission_classes=[IsAuthenticated]
     def get(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
@@ -77,6 +78,7 @@ class UserProfile(APIView):
         if pk:
             try:
                 user = User.objects.get(pk=pk)
+
                 serializer = UserSerializer(user, data=request.data,partial=True)
                 if serializer.is_valid():
                     serializer.save()
@@ -91,8 +93,7 @@ class UserProfile(APIView):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
+        
     def delete(self, request, pk):
         try:
             user = User.objects.get(pk=pk)
@@ -100,6 +101,22 @@ class UserProfile(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         except User.DoesNotExist:
             return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+class ResetPasswordView(APIView):
+    def put(self, request):
+        data = json.loads(request.body)
+        username = request.GET.get("username")
+
+        try:
+            user = User.objects.get(email=request.data['email'], username=request.data['username'])
+
+            if user:
+                user.set_password(data["password"])
+                user.save()
+                return JsonResponse({"message": "Password successfully updated"},status=status.HTTP_200_OK,safe=False,)
+            return JsonResponse({"message": "No user found!!"},status=status.HTTP_400_BAD_REQUEST,safe=False,)
+        except:
+            return JsonResponse({"message": "No user found!!"},status=status.HTTP_400_BAD_REQUEST,safe=False,)
 
 class AddMovieAPIView(APIView):
     permission_classes=[IsAuthenticated , IsAdminUser]

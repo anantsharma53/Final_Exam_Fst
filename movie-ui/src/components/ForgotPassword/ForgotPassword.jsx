@@ -9,7 +9,7 @@ export function ForgotUser() {
   const navigate = useNavigate();
   function handleSubmit() {
     console.log(user);
-    fetch("http://127.0.0.1:8000/api/user/reset/", {
+    fetch("http://127.0.0.1:8000/api/users/resetpassword/", {
       method: "PUT",
       body: JSON.stringify(user),
       headers: {
@@ -23,7 +23,7 @@ export function ForgotUser() {
         if (res.status === 200) {
           alert("Successful password change")
           navigate("/signin");
-        } else if (res.status === 500) {
+        } else if (res.status === 400) {
           alert("Check your Details")
           // navigate("/signin");
         }

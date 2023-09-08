@@ -218,7 +218,7 @@ function Profile(props) {
                 </div>
 
               </div>
-              <div className="mb-3 formDisplay">
+              {/* <div className="mb-3 formDisplay">
                 <div>
                   <label htmlFor="password" >New Password</label>
                 </div>
@@ -233,7 +233,7 @@ function Profile(props) {
                   />
                 </div>
 
-              </div>
+              </div> */}
               <button type="submit" className="btnupdate">Save Changes</button>
             </div>
 
