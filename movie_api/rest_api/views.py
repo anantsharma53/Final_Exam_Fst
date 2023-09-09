@@ -87,7 +87,8 @@ class UserProfile(APIView):
             except User.DoesNotExist:
                 return Response({"message": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         print(request.data)
-        user = User.objects.get(email=request.data['email'], username=request.data['username'])
+        # user = User.objects.get(email=request.data['email'], username=request.data['username'])
+        # user.set_password(request.data["password"])
         serializer = UserSerializer(user, data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -106,7 +107,6 @@ class ResetPasswordView(APIView):
     def put(self, request):
         data = json.loads(request.body)
         username = request.GET.get("username")
-
         try:
             user = User.objects.get(email=request.data['email'], username=request.data['username'])
 

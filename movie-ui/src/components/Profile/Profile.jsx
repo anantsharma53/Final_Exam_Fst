@@ -81,10 +81,13 @@ function Profile(props) {
     })
       .then((res) => {
         console.log(res);
-        if (res.status === 202) {
+        if (res.status === 200) {
           alert("DETAILS UPDATE PLEASE RELOGIN")
+          localStorage.removeItem("token");
+          localStorage.removeItem('user_details');
+          localStorage.removeItem("tokenExpiration");
           navigate('/signin')
-        } else if (res.status === 401) {
+        } else if (res.status === 400) {
           console.log("Unauthorized request");
 
         }
@@ -108,18 +111,19 @@ function Profile(props) {
         .then(response => {
             
             if (response.status === 204) {
-                navigate('/')
+              alert("Account Deleted")                
                 localStorage.removeItem("token");
                 localStorage.removeItem('user_details');
                 localStorage.removeItem("tokenExpiration");
                 console.error('deleting done:', response.status);
+                navigate('/')
             } else {
                 // Handle other response statuses here
-                console.error('Error deleting movie:', response.status);
+                console.error('Error deleting', response.status);
             }
         })
         .catch(error => {
-            console.error('Error deleting movie:', error);
+            console.error('Error deleting :', error);
         });
 }
   return (
