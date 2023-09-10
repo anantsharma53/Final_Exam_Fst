@@ -229,7 +229,7 @@ function TheaterUpdate({ setShowModal4 }) {
                         />
                     </div>
 
-                    <div className="footer">
+                    <div className="footers">
                         <button onClick={() => setShowModal4(false)} id="cancelBtn">
                             Cancel
                         </button>

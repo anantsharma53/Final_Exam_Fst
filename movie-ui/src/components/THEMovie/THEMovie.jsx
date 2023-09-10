@@ -183,7 +183,7 @@ function MovieThUpload({ setShowModal2 }) {
                         />
                     </div>
 
-                    <div className="footer">
+                    <div className="footers">
                         <button onClick={() => setShowModal2(false)} id="cancelBtn">
                             Cancel
                         </button>

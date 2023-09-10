@@ -1,8 +1,8 @@
-.dashboardContainer{
+.dashboardContainerss{
     height: 100vh;
     display: flex;
     justify-content: space-between;
-    background-image: url("https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg");
+    background-image: url("https://i.pinimg.com/originals/be/65/5f/be655f0bfa4b853e0ac2482168715e55.jpg");
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
@@ -15,10 +15,19 @@
 	margin-bottom: 0%;
 	
 }
-.main{
+.main1{
 	display: flex;
 	margin-top: 0%;
 }
+@media (max-width: 600px) {
+	.main1{
+		display: block;
+		
+		margin-top: 0%;
+		
+	}
+	
+  }
 .userDetail{
 	/* justify-content: left;  */
 	width: 30%;

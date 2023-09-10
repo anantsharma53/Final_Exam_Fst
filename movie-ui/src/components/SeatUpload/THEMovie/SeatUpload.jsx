@@ -191,7 +191,7 @@ function SeatUpload({ setShowModal3 }) {
                     </div>
                     
                     
-                    <div className="footer">
+                    <div className="footers">
                         <button onClick={() => setShowModal3(false)} id="cancelBtn">
                             Cancel
                         </button>

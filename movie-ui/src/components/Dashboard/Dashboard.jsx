@@ -136,7 +136,7 @@ function Dashboard() {
                 <div>
                     <Navbar />
 
-                    <div className="dashboardContainer">
+                    <div className="dashboardContainerss">
                         <div className="buttonContainer">
                             <button type="button" className="openModalBtn" onClick={openModal}>
                                 Upload Movie
@@ -290,8 +290,8 @@ function Dashboard() {
 
                 </div>) :
                 (<><Navbar />
-                    <div className="dashboardContainer" >
-                        <div className="main">
+                    <div className="dashboardContainerss" >
+                        <div className="main1">
                             <Profile />
                             <ShowTicket />
                         </div>

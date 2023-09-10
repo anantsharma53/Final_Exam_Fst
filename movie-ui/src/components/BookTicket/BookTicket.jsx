@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import './BookTicket.css'
 import SeatLayout from '../SeatLayout/SeatLayout';
 import Loader from '../Loader/Loader';
+import Footer from '../Footer/Footer';
 
 export function BookTicket() {
     const { id } = useParams()
@@ -32,7 +33,7 @@ export function BookTicket() {
     return (
         <div className="plan"
             style={{
-                backgroundImage: 'url("https://t4.ftcdn.net/jpg/02/86/32/31/360_F_286323187_mDk3N4nGDaPkUmhNcdBe3RjSOfKqx4nZ.jpg")',
+                backgroundImage: 'url("https://i.pinimg.com/originals/be/65/5f/be655f0bfa4b853e0ac2482168715e55.jpg")',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',  // Adjust the background size as needed
                 backgroundPosition: 'center',  // Adjust the background position as needed
@@ -94,7 +95,8 @@ export function BookTicket() {
                 </div>)
                 : (<Loader/>)
             }
-
+            <div style={{height:'300px'}}></div>
+        <Footer/>
         </div>
     )
 }

@@ -165,7 +165,7 @@ function UpdateMovie({ setShowModal6 }) {
                                 }} className='form-control' />
                             </div>
 
-                            <div className="footer">
+                            <div className="footers">
                                 <button
                                     onClick={() => {
                                         setShowModal6(false);

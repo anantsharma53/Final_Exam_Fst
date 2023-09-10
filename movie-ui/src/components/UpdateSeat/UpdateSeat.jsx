@@ -228,7 +228,7 @@ function UpdateSeat({ setShowModal5 }) {
                     </div>
 
 
-                    <div className="footer">
+                    <div className="footers">
                         <button onClick={() => setShowModal5(false)} id="cancelBtn">
                             Cancel
                         </button>
@@ -240,7 +240,7 @@ function UpdateSeat({ setShowModal5 }) {
                         </div>
                     </div>
                     <h3>Select Theater and Seat No only <br />to Delete</h3>
-                        <div className="footer">
+                        <div className="footers">
                         <div>
                             <button id="cancelBtn" onClick={() => DeleteSeat()}>Delete</button>
                         </div>

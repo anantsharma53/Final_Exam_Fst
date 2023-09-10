@@ -1,7 +1,13 @@
 
 .navbar-bg{
     /* background-color: #0a1e5e !important; */
-    background: linear-gradient(to right, #ee7724, #d8363a, #d8363a, #ee7724);
+    /* background: linear-gradient(to right, #ee7724, #d8363a, #d8363a, #ee7724); */
+    /* background: linear-gradient(to right, #d8363a, #ee7724,  #ee7724, #d8363a); */
+    background-image: url("https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80");
+    
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
     height: 80px;
    
 }

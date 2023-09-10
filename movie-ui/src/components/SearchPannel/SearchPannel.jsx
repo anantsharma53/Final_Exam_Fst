@@ -53,14 +53,14 @@ function SearchPanel({ onNameChange, onLanguageChange, onGenreChange }) {
 
     return (
         <div className="searchPanel">
-            <div>
+            {/* <div>
                 <p className="header1">
                     WELCOME TO BOLETO
                 </p>
                 <h1 className="header2">
                     WHAT ARE  YOU LOOKING FOR
                 </h1>
-            </div>
+            </div> */}
             <div className="searchBox">
                 <div className="searchWrapper">
                     <input className="searchInput"

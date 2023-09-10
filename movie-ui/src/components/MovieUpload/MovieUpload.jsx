@@ -123,7 +123,7 @@ function MovieUpload({ setShowModal }) {
                                 }} className='form-control' />
                             </div>
 
-                            <div className="footer">
+                            <div className="footers">
                                 <button
                                     onClick={() => {
                                         setShowModal(false);

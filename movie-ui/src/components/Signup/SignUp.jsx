@@ -34,7 +34,7 @@ export function Signup() {
     console.log(user);
   }
   return (
-    <div className="signupContainer">
+    <div className="signupContainers">
       <div className="signupForm">
         <h2 className="welcomeText">WELCOME</h2>
         <h2 className="welcomeSubText">Movie Tickets</h2>

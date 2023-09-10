@@ -31,6 +31,7 @@ function SeatLayout(props) {
       alert('This seat is already reserved.');
     }
   };
+  const totalSeatPrice = selectedSeats.reduce((total, seat) => total + seat.price, 0);
   console.log(selectedSeats)
   const handleOpenPaymentModal = () => {
     if (token) {
@@ -93,6 +94,7 @@ function SeatLayout(props) {
               <span>Reserved</span>
             </div>
           </div>
+          
       </div>
 
 
@@ -107,9 +109,10 @@ function SeatLayout(props) {
       {paymentKey &&
 
         <p>Payment Key: {paymentKey}</p>}
+        <h4>Total Seat Price: Rs:{totalSeatPrice}/-</h4>
       {selectedSeats.length !== 0 ?
         // selectedSeats.length !== 0 && selectedShowDate && selectedShowTime ?
-
+        
         <button class="btnBookTickets" onClick={handleOpenPaymentModal}>Make Pyment</button>
 
         // <button class="btnBookTickets" onClick={handleBookSeats}>Book Selected Seats</button>

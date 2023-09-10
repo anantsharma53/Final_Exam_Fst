@@ -20,7 +20,7 @@
 } 
   .modalContainer {
     width: 500px;
-    height:600px;
+    height:700px;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -78,14 +78,14 @@
     text-align: center;
   }
   
-  .modalContainer .footer {
+  .modalContainer .footers {
     flex: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
-  .modalContainer .footer button {
+  .modalContainer .footers button {
     width: 150px;
     height: 45px;
     margin: 10px;
