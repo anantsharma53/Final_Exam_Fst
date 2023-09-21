@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Profile(props) {
   const navigate = useNavigate()
   const token = localStorage.getItem('token');
+
   const userDetails = JSON.parse(localStorage.getItem("user_details"));
   const [user, setUser] = useState()
 

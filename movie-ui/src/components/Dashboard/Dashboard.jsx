@@ -14,6 +14,7 @@ import SeatUpload from "../SeatUpload/THEMovie/SeatUpload";
 import UpdateSeat from "../UpdateSeat/UpdateSeat";
 import UpdateMovie from "../UpdateMovie/UpdateMovie";
 import AdminShowTicket from "../AdminShowTickets/AdminShowTickets";
+import { Signin } from "../SIgnIn/SignIn";
 
 function Dashboard() {
     const navigate = useNavigate()
@@ -132,7 +133,7 @@ function Dashboard() {
     return (
         <>
 
-            {isSuperUser ? (
+            {isSuperUser && token? (
                 <div>
                     <Navbar />
 
@@ -289,13 +290,23 @@ function Dashboard() {
                     </div>
 
                 </div>) :
-                (<><Navbar />
+                
+                (
+                <>
+                {token?(
+                    <>
+                    <Navbar />
                     <div className="dashboardContainerss" >
                         <div className="main1">
                             <Profile />
                             <ShowTicket />
                         </div>
                     </div>
+                    </>
+                ):(
+                    <Signin/>
+                )}
+                
                 </>
 
                 )
